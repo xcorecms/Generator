@@ -1,0 +1,15 @@
+{
+    "name": "Product",
+    "properties": [
+        {
+            "name": "shipment",
+            "oneToOne": {
+                "targetEntity": "Shipment"
+            },
+            "joinColumn": {
+                "name": "shipment_id",
+                "referencedColumnName": "id"
+            }
+        }
+    ]
+}

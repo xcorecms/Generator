@@ -1,0 +1,26 @@
+{
+    "name": "Article",
+    "properties": [
+        {
+            "name": "title"
+        },
+        {
+            "name": "perex",
+            "nullable": true
+        },
+        {
+            "name": "text",
+            "type": "text",
+            "nullable": true
+        },
+        {
+            "name": "active",
+            "type": "boolean"
+        },
+        {
+            "name": "updatedAt",
+            "type": "datetime",
+            "nullable": true
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Message",
+    "properties": [
+        {
+            "name": "id",
+            "type": "integer",
+            "id": true,
+            "generatedValue": "SEQUENCE",
+            "sequenceGenerator": {
+                "sequenceName": "message_seq",
+                "initialValue": 1,
+                "allocationSize": 100
+            }
+        },
+        {
+            "name": "text",
+            "length": 140
+        },
+        {
+            "name": "postedAt",
+            "type": "datetime",
+            "columnName": "posted_at"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "User",
+    "properties": [
+        {
+            "name": "address",
+            "manyToOne": {
+                "targetEntity": "Address"
+            },
+            "joinColumn": {
+                "name": "address_id",
+                "referencedColumnName": "id"
+            }
+        }
+    ]
+}

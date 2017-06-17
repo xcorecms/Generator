@@ -1,0 +1,112 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Doctrine ORM Entity JSON schema",
+    "type": "object",
+    "definitions": {
+        "entity-name": {
+            "type": "string",
+            "description": "Entity name without namespace",
+            "minLength": 1
+        },
+        "property-name": {
+            "type": "string",
+            "description": "Property name",
+            "minLength": 1
+        }
+    },
+    "properties": {
+        "name": { "$ref": "#/definitions/entity-name" },
+        "namespace": {
+            "type": "string"
+        },
+        "nullable": {
+            "type": "boolean",
+            "default": true,
+            "description": "All properties are nullable by default."
+        },
+        "properties": {
+            "type": "array",
+            "items": {
+                "properties": {
+                    "id": {
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "generatedValue": {
+                        "enum": [
+                            "AUTO", "SEQUENCE", "IDENTITY", "UUID", "TABLE", "NONE", "CUSTOM"
+                        ],
+                        "default": "AUTO"
+                    },
+                    "sequenceGenerator": {
+                        "type": "object",
+                        "properties": {
+                            "sequenceName": {
+                                "type": "string"
+                            },
+                            "initialValue": {
+                                "type": "integer"
+                            },
+                            "allocationSize": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "name": { "$ref": "#/definitions/property-name" },
+                    "columnName": {
+                        "type": "string"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "nullable": {
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "type": {
+                        "enum": [
+                            "string", "integer", "smallint", "bigint", "boolean", "decimal", "date", "time",
+                            "datetime", "datetimez", "text", "object", "array", "simple_array", "json_array",
+                            "float", "guid", "blob"
+                        ]
+                    },
+                    "manyToOne": {
+                        "type": "object",
+                        "properties": {
+                            "targetEntity": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["targetEntity"]
+                    },
+                    "oneToOne": {
+                        "type": "object",
+                        "properties": {
+                            "targetEntity": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["targetEntity"]
+                    },
+                    "joinColumn": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "referencedColumnName": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["name"]
+            },
+            "additionalProperties": false
+        }
+    },
+    "required": ["name"],
+    "additionalProperties": false
+}
