@@ -51,14 +51,10 @@ trait CartTrait
      * Set customer
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Customer $customer
-     *
-     * @return CartTrait
      */
-    public function setCustomer(\Xcore\Generator\Tests\Data\AssociationMapping\Customer  $customer = null): CartTrait
+    public function setCustomer(\Xcore\Generator\Tests\Data\AssociationMapping\Customer  $customer = null): void
     {
         $this->customer = $customer;
-
-        return $this;
     }
 
     /**

@@ -76,14 +76,10 @@ trait ArticleTrait
      * Set title
      *
      * @param string $title
-     *
-     * @return ArticleTrait
      */
-    public function setTitle(string $title): ArticleTrait
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-
-        return $this;
     }
 
     /**
@@ -100,14 +96,10 @@ trait ArticleTrait
      * Set perex
      *
      * @param null|string $perex
-     *
-     * @return ArticleTrait
      */
-    public function setPerex(?string $perex): ArticleTrait
+    public function setPerex(?string $perex): void
     {
         $this->perex = $perex;
-
-        return $this;
     }
 
     /**
@@ -124,14 +116,10 @@ trait ArticleTrait
      * Set text
      *
      * @param null|string $text
-     *
-     * @return ArticleTrait
      */
-    public function setText(?string $text): ArticleTrait
+    public function setText(?string $text): void
     {
         $this->text = $text;
-
-        return $this;
     }
 
     /**
@@ -148,14 +136,10 @@ trait ArticleTrait
      * Set active
      *
      * @param bool $active
-     *
-     * @return ArticleTrait
      */
-    public function setActive(bool $active): ArticleTrait
+    public function setActive(bool $active): void
     {
         $this->active = $active;
-
-        return $this;
     }
 
     /**
@@ -172,14 +156,10 @@ trait ArticleTrait
      * Set updatedAt
      *
      * @param null|\DateTime $updatedAt
-     *
-     * @return ArticleTrait
      */
-    public function setUpdatedAt(?\DateTime $updatedAt): ArticleTrait
+    public function setUpdatedAt(?\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**

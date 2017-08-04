@@ -56,14 +56,10 @@ trait MessageTrait
      * Set text
      *
      * @param string $text
-     *
-     * @return MessageTrait
      */
-    public function setText(string $text): MessageTrait
+    public function setText(string $text): void
     {
         $this->text = $text;
-
-        return $this;
     }
 
     /**
@@ -80,14 +76,10 @@ trait MessageTrait
      * Set postedAt
      *
      * @param \DateTime $postedAt
-     *
-     * @return MessageTrait
      */
-    public function setPostedAt(\DateTime $postedAt): MessageTrait
+    public function setPostedAt(\DateTime $postedAt): void
     {
         $this->postedAt = $postedAt;
-
-        return $this;
     }
 
     /**

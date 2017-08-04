@@ -51,14 +51,10 @@ trait FeatureTrait
      * Set product
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Product2 $product
-     *
-     * @return FeatureTrait
      */
-    public function setProduct(\Xcore\Generator\Tests\Data\AssociationMapping\Product2  $product = null): FeatureTrait
+    public function setProduct(\Xcore\Generator\Tests\Data\AssociationMapping\Product2  $product = null): void
     {
         $this->product = $product;
-
-        return $this;
     }
 
     /**

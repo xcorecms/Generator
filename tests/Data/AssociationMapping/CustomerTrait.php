@@ -48,14 +48,10 @@ trait CustomerTrait
      * Set cart
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Cart $cart
-     *
-     * @return CustomerTrait
      */
-    public function setCart(\Xcore\Generator\Tests\Data\AssociationMapping\Cart  $cart = null): CustomerTrait
+    public function setCart(\Xcore\Generator\Tests\Data\AssociationMapping\Cart  $cart = null): void
     {
         $this->cart = $cart;
-
-        return $this;
     }
 
     /**

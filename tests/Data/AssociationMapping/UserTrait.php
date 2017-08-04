@@ -51,14 +51,10 @@ trait UserTrait
      * Set address
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Address $address
-     *
-     * @return UserTrait
      */
-    public function setAddress(\Xcore\Generator\Tests\Data\AssociationMapping\Address  $address = null): UserTrait
+    public function setAddress(\Xcore\Generator\Tests\Data\AssociationMapping\Address  $address = null): void
     {
         $this->address = $address;
-
-        return $this;
     }
 
     /**

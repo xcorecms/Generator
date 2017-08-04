@@ -51,14 +51,10 @@ trait ProductTrait
      * Set shipment
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Shipment $shipment
-     *
-     * @return ProductTrait
      */
-    public function setShipment(\Xcore\Generator\Tests\Data\AssociationMapping\Shipment  $shipment = null): ProductTrait
+    public function setShipment(\Xcore\Generator\Tests\Data\AssociationMapping\Shipment  $shipment = null): void
     {
         $this->shipment = $shipment;
-
-        return $this;
     }
 
     /**

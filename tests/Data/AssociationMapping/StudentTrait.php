@@ -51,14 +51,10 @@ trait StudentTrait
      * Set mentor
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Student $mentor
-     *
-     * @return StudentTrait
      */
-    public function setMentor(\Xcore\Generator\Tests\Data\AssociationMapping\Student  $mentor = null): StudentTrait
+    public function setMentor(\Xcore\Generator\Tests\Data\AssociationMapping\Student  $mentor = null): void
     {
         $this->mentor = $mentor;
-
-        return $this;
     }
 
     /**

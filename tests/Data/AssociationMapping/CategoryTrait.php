@@ -99,14 +99,10 @@ trait CategoryTrait
      * Set parent
      *
      * @param \Xcore\Generator\Tests\Data\AssociationMapping\Category $parent
-     *
-     * @return CategoryTrait
      */
-    public function setParent(\Xcore\Generator\Tests\Data\AssociationMapping\Category  $parent = null): CategoryTrait
+    public function setParent(\Xcore\Generator\Tests\Data\AssociationMapping\Category  $parent = null): void
     {
         $this->parent = $parent;
-
-        return $this;
     }
 
     /**
