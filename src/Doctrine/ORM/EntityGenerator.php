@@ -46,9 +46,11 @@ class EntityGenerator
             $entityTraitMetadataInfo->mapField($property->getMetadataMapping());
 
             if ($property->getGeneratedValue() !== null) {
-                $entityTraitMetadataInfo->setIdGeneratorType($property->getGeneratedValue()->getValue());
+                $entityTraitMetadataInfo->setIdGeneratorType($property->getGeneratedValue()->value());
 
-                if ($property->getGeneratedValue()->getValue() === GeneratedValueType::SEQUENCE) {
+                if ($property->getSequenceGenerator() !== null &&
+                    $property->getGeneratedValue()->getValue() === GeneratedValueType::SEQUENCE)
+                {
                     $sequenceGenerator = $property->getSequenceGenerator();
 
                     $entityTraitMetadataInfo->setSequenceGeneratorDefinition([
@@ -110,7 +112,7 @@ class EntityGenerator
                     $targetEntity = $entity->getNamespace().'\\'.$association->getTargetEntity();
                 }
 
-                $classMetadataBuilder->addOneToMany($association->getName(), $targetEntity, $association->getMappedBy());
+                $classMetadataBuilder->addOneToMany($association->getName(), $targetEntity, (string) $association->getMappedBy());
             }
 
             if ($association->getType()->getValue() === AssociationType::MANY_TO_MANY) {

@@ -17,6 +17,11 @@ final class GeneratedValueType extends Enum
     public const NONE = ClassMetadataInfo::GENERATOR_TYPE_NONE;
     public const CUSTOM = ClassMetadataInfo::GENERATOR_TYPE_CUSTOM;
 
+    public function value(): int
+    {
+        return (int) $this->getValue();
+    }
+
     public static function createFromName(string $name): GeneratedValueType
     {
         switch ($name) {

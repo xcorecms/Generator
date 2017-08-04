@@ -133,6 +133,9 @@
                                 "type": "string"
                             }
                         }
+                    },
+                    "asserts": {
+                        "type": "object"
                     }
                 },
                 "additionalProperties": false,

@@ -28,7 +28,8 @@
         "league/json-guard": "^1.0",
         "league/json-reference": "^1.0",
         "marc-mabe/php-enum": "^2.3",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "symfony/validator": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.2",

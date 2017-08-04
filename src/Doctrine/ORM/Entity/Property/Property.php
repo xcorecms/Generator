@@ -50,8 +50,7 @@ final class Property
         bool $nullable,
         Visibility $visibility,
         ?GetterType $getter,
-        bool $setter,
-        ?GeneratedValueType $generatedValue = null
+        bool $setter
     )
     {
         $this->name = $name;

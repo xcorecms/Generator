@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Xcore\Generator\Doctrine\ORM\Entity;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Xcore\Generator\Doctrine\ORM\Entity\Association\Association;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GetterType;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GetterTypeTrait;
@@ -55,6 +56,11 @@ final class Entity
      * @var string[]
      */
     private $ids = [];
+
+    /**
+     * @var null|ClassMetadata
+     */
+    private $validationMetadata;
 
     public function __construct(string $className, bool $nullable, Visibility $visibility, ?GetterType $getter, bool $setter)
     {
@@ -173,5 +179,14 @@ final class Entity
     public function setOutputDirectory(string $outputDirectory): void
     {
         $this->outputDirectory = $outputDirectory;
+    }
+
+    public function getValidationMetadata(): ClassMetadata
+    {
+        if ($this->validationMetadata === null) {
+            $this->validationMetadata = new ClassMetadata($this->getClassName());
+        }
+
+        return $this->validationMetadata;
     }
 }

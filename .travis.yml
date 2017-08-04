@@ -36,3 +36,4 @@ before_script:
 
 script:
   - vendor/bin/phpunit -c phpunit.xml.dist
+  - vendor/bin/phpstan analyse src tests -l 7

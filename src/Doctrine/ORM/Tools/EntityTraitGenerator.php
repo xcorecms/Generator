@@ -54,14 +54,10 @@ public function <methodName>(): <variableType>
  * <description>
  *
  * @param <variableType> $<variableName>
- *
- * @return <entity>
  */
-public function <methodName>(<methodTypeHint> $<variableName><variableDefault>): <entity>
+public function <methodName>(<methodTypeHint> $<variableName><variableDefault>): void
 {
 <spaces>$this-><fieldName> = $<variableName>;
-
-<spaces>return $this;
 }';
 
     /**
@@ -186,7 +182,12 @@ public function generatedConstructor(): void
 
                 /** @var null|GetterType $getter */
                 $getter = $fieldMapping['getter'];
-                $code = str_replace('function '.$type, 'function '.$getter->getValue(), $code);
+
+                if ($getter !== null) {
+                    $code = str_replace('function '.$type, 'function '.$getter->getValue(), $code);
+                } else {
+                    return '';
+                }
 
                 if ($fieldMapping['nullable'] === true) {
                     $variableType = $this->getType($typeHint);
@@ -205,7 +206,7 @@ public function generatedConstructor(): void
                 $setter = $fieldMapping['setter'];
 
                 if ($setter === false) {
-                    $code = '';
+                    return '';
                 }
 
                 $variableName = Inflector::camelize($fieldName);
