@@ -29,20 +29,20 @@ trait User5Trait
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\User", mappedBy="myFriends")
+     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\User5", mappedBy="myFriends")
      */
     private $friendsWithMe;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\User", inversedBy="friendsWithMe")
-     * @ORM\JoinTable(name="user5trait_user",
+     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\User5", inversedBy="friendsWithMe")
+     * @ORM\JoinTable(name="user5trait_user5",
      *   joinColumns={
      *     @ORM\JoinColumn(name="user5trait_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="user5_id", referencedColumnName="id", onDelete="CASCADE")
      *   }
      * )
      */
@@ -70,11 +70,11 @@ trait User5Trait
     /**
      * Add friendsWithMe
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User $friendsWithMe
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User5 $friendsWithMe
      *
      * @return User5Trait
      */
-    public function addFriendsWithMe(\Xcore\Generator\Tests\Data\AssociationMapping\User $friendsWithMe)
+    public function addFriendsWithMe(\Xcore\Generator\Tests\Data\AssociationMapping\User5 $friendsWithMe)
     {
         $this->friendsWithMe[] = $friendsWithMe;
 
@@ -84,9 +84,9 @@ trait User5Trait
     /**
      * Remove friendsWithMe
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User $friendsWithMe
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User5 $friendsWithMe
      */
-    public function removeFriendsWithMe(\Xcore\Generator\Tests\Data\AssociationMapping\User $friendsWithMe)
+    public function removeFriendsWithMe(\Xcore\Generator\Tests\Data\AssociationMapping\User5 $friendsWithMe)
     {
         $this->friendsWithMe->removeElement($friendsWithMe);
     }
@@ -104,11 +104,11 @@ trait User5Trait
     /**
      * Add myFriend
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User $myFriend
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User5 $myFriend
      *
      * @return User5Trait
      */
-    public function addMyFriend(\Xcore\Generator\Tests\Data\AssociationMapping\User $myFriend)
+    public function addMyFriend(\Xcore\Generator\Tests\Data\AssociationMapping\User5 $myFriend)
     {
         $this->myFriends[] = $myFriend;
 
@@ -118,9 +118,9 @@ trait User5Trait
     /**
      * Remove myFriend
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User $myFriend
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User5 $myFriend
      */
-    public function removeMyFriend(\Xcore\Generator\Tests\Data\AssociationMapping\User $myFriend)
+    public function removeMyFriend(\Xcore\Generator\Tests\Data\AssociationMapping\User5 $myFriend)
     {
         $this->myFriends->removeElement($myFriend);
     }

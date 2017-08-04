@@ -29,7 +29,7 @@ trait Group2Trait
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\Group", mappedBy="groups")
+     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\User4", mappedBy="groups")
      */
     private $users;
 
@@ -54,11 +54,11 @@ trait Group2Trait
     /**
      * Add user
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group $user
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User4 $user
      *
      * @return Group2Trait
      */
-    public function addUser(\Xcore\Generator\Tests\Data\AssociationMapping\Group $user)
+    public function addUser(\Xcore\Generator\Tests\Data\AssociationMapping\User4 $user)
     {
         $this->users[] = $user;
 
@@ -68,9 +68,9 @@ trait Group2Trait
     /**
      * Remove user
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group $user
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\User4 $user
      */
-    public function removeUser(\Xcore\Generator\Tests\Data\AssociationMapping\Group $user)
+    public function removeUser(\Xcore\Generator\Tests\Data\AssociationMapping\User4 $user)
     {
         $this->users->removeElement($user);
     }

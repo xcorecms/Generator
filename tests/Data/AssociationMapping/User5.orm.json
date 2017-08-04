@@ -4,14 +4,14 @@
         {
             "name": "friendsWithMe",
             "manyToMany": {
-                "targetEntity": "User",
+                "targetEntity": "User5",
                 "mappedBy": "myFriends"
             }
         },
         {
             "name": "myFriends",
             "manyToMany": {
-                "targetEntity": "User",
+                "targetEntity": "User5",
                 "inversedBy": "friendsWithMe"
             }
         }

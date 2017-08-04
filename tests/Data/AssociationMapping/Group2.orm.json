@@ -4,7 +4,7 @@
         {
             "name": "users",
             "manyToMany": {
-                "targetEntity": "Group",
+                "targetEntity": "User4",
                 "mappedBy": "groups"
             }
         }

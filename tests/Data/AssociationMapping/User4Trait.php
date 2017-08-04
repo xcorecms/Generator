@@ -29,13 +29,13 @@ trait User4Trait
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\Group", inversedBy="users")
-     * @ORM\JoinTable(name="user4trait_group",
+     * @ORM\ManyToMany(targetEntity="Xcore\Generator\Tests\Data\AssociationMapping\Group2", inversedBy="users")
+     * @ORM\JoinTable(name="user4trait_group2",
      *   joinColumns={
      *     @ORM\JoinColumn(name="user4trait_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="group_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="group2_id", referencedColumnName="id", onDelete="CASCADE")
      *   }
      * )
      */
@@ -62,11 +62,11 @@ trait User4Trait
     /**
      * Add group
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group $group
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group2 $group
      *
      * @return User4Trait
      */
-    public function addGroup(\Xcore\Generator\Tests\Data\AssociationMapping\Group $group)
+    public function addGroup(\Xcore\Generator\Tests\Data\AssociationMapping\Group2 $group)
     {
         $this->groups[] = $group;
 
@@ -76,9 +76,9 @@ trait User4Trait
     /**
      * Remove group
      *
-     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group $group
+     * @param \Xcore\Generator\Tests\Data\AssociationMapping\Group2 $group
      */
-    public function removeGroup(\Xcore\Generator\Tests\Data\AssociationMapping\Group $group)
+    public function removeGroup(\Xcore\Generator\Tests\Data\AssociationMapping\Group2 $group)
     {
         $this->groups->removeElement($group);
     }

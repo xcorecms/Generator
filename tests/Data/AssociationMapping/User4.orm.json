@@ -4,7 +4,7 @@
         {
             "name": "groups",
             "manyToMany": {
-                "targetEntity": "Group",
+                "targetEntity": "Group2",
                 "inversedBy": "users"
             }
         }
