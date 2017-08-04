@@ -1,0 +1,12 @@
+{
+    "name": "Group2",
+    "properties": [
+        {
+            "name": "users",
+            "manyToMany": {
+                "targetEntity": "Group",
+                "mappedBy": "groups"
+            }
+        }
+    ]
+}

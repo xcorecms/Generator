@@ -1,0 +1,19 @@
+{
+    "name": "User5",
+    "properties": [
+        {
+            "name": "friendsWithMe",
+            "manyToMany": {
+                "targetEntity": "User",
+                "mappedBy": "myFriends"
+            }
+        },
+        {
+            "name": "myFriends",
+            "manyToMany": {
+                "targetEntity": "User",
+                "inversedBy": "friendsWithMe"
+            }
+        }
+    ]
+}

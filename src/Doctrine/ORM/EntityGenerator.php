@@ -26,13 +26,6 @@ class EntityGenerator
 
     public function generateEntity(Entity $entity): void
     {
-        $entityClassGenerator = new EntityClassGenerator();
-        $entityClassGenerator->setGenerateAnnotations(true);
-
-        $entityClassMetadataInfo = new ClassMetadataInfo($entity->getClassName());
-
-        $entityClassGenerator->writeEntityClass($entityClassMetadataInfo, $entity->getOutputDirectory());
-
         $entityTraitGenerator = new EntityTraitGenerator();
         $entityTraitGenerator->setGenerateAnnotations(true);
 
@@ -77,7 +70,13 @@ class EntityGenerator
                     $targetEntity = $entity->getNamespace().'\\'.$association->getTargetEntity();
                 }
 
-                $classMetadataBuilder->addManyToOne($association->getName(), $targetEntity);
+                $inversedBy = null;
+
+                if ($association->getInversedBy() !== null) {
+                    $inversedBy = $association->getInversedBy();
+                }
+
+                $classMetadataBuilder->addManyToOne($association->getName(), $targetEntity, $inversedBy);
             }
 
             if ($association->getType()->getValue() === AssociationType::ONE_TO_ONE) {
@@ -87,10 +86,65 @@ class EntityGenerator
                     $targetEntity = $entity->getNamespace().'\\'.$association->getTargetEntity();
                 }
 
-                $classMetadataBuilder->addOwningOneToOne($association->getName(), $targetEntity);
+                $inversedBy = null;
+
+                if ($association->getInversedBy() !== null) {
+                    $inversedBy = $association->getInversedBy();
+                }
+
+                if ($association->getMappedBy() !== null) {
+                    $classMetadataBuilder->addInverseOneToOne(
+                        $association->getName(),
+                        $targetEntity,
+                        $association->getMappedBy()
+                    );
+                } else {
+                    $classMetadataBuilder->addOwningOneToOne($association->getName(), $targetEntity, $inversedBy);
+                }
+            }
+
+            if ($association->getType()->getValue() === AssociationType::ONE_TO_MANY) {
+                $targetEntity = $association->getTargetEntity();
+
+                if (strpos($targetEntity, '\\') === false) {
+                    $targetEntity = $entity->getNamespace().'\\'.$association->getTargetEntity();
+                }
+
+                $classMetadataBuilder->addOneToMany($association->getName(), $targetEntity, $association->getMappedBy());
+            }
+
+            if ($association->getType()->getValue() === AssociationType::MANY_TO_MANY) {
+                $targetEntity = $association->getTargetEntity();
+
+                if (strpos($targetEntity, '\\') === false) {
+                    $targetEntity = $entity->getNamespace().'\\'.$association->getTargetEntity();
+                }
+
+                $inversedBy = null;
+
+                if ($association->getInversedBy() !== null) {
+                    $inversedBy = $association->getInversedBy();
+                }
+
+                if ($association->getMappedBy() !== null) {
+                    $classMetadataBuilder->addInverseManyToMany(
+                        $association->getName(),
+                        $targetEntity,
+                        $association->getMappedBy()
+                    );
+                } else {
+                    $classMetadataBuilder->addOwningManyToMany($association->getName(), $targetEntity, $inversedBy);
+                }
             }
         }
 
         $entityTraitGenerator->writeEntityClass($entityTraitMetadataInfo, $entity->getOutputDirectory());
+
+        $entityClassGenerator = new EntityClassGenerator();
+        $entityClassGenerator->setGenerateAnnotations(true);
+        $entityClassGenerator->generateConstructor($entityTraitGenerator->hasConstructor());
+
+        $entityClassMetadataInfo = new ClassMetadataInfo($entity->getClassName());
+        $entityClassGenerator->writeEntityClass($entityClassMetadataInfo, $entity->getOutputDirectory());
     }
 }

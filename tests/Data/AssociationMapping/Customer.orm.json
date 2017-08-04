@@ -1,0 +1,12 @@
+{
+    "name": "Customer",
+    "properties": [
+        {
+            "name": "cart",
+            "oneToOne": {
+                "targetEntity": "Cart",
+                "mappedBy": "customer"
+            }
+        }
+    ]
+}

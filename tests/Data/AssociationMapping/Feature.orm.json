@@ -1,0 +1,12 @@
+{
+    "name": "Feature",
+    "properties": [
+        {
+            "name": "product",
+            "manyToOne": {
+                "targetEntity": "Product2",
+                "inversedBy": "features"
+            }
+        }
+    ]
+}

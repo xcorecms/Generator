@@ -76,6 +76,9 @@
                         "properties": {
                             "targetEntity": {
                                 "type": "string"
+                            },
+                            "inversedBy": {
+                                "type": "string"
                             }
                         },
                         "required": ["targetEntity"]
@@ -85,9 +88,40 @@
                         "properties": {
                             "targetEntity": {
                                 "type": "string"
+                            },
+                            "mappedBy": {
+                                "type": "string"
+                            },
+                            "inversedBy": {
+                                "type": "string"
                             }
                         },
                         "required": ["targetEntity"]
+                    },
+                    "oneToMany": {
+                        "type": "object",
+                        "properties": {
+                            "targetEntity": {
+                                "type": "string"
+                            },
+                            "mappedBy": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "manyToMany": {
+                        "type": "object",
+                        "properties": {
+                            "targetEntity": {
+                                "type": "string"
+                            },
+                            "inversedBy": {
+                                "type": "string"
+                            },
+                            "mappedBy": {
+                                "type": "string"
+                            }
+                        }
                     },
                     "joinColumn": {
                         "type": "object",

@@ -1,0 +1,11 @@
+{
+    "name": "User2",
+    "properties": [
+        {
+            "name": "phoneNumbers",
+            "manyToMany": {
+                "targetEntity": "PhoneNumber"
+            }
+        }
+    ]
+}

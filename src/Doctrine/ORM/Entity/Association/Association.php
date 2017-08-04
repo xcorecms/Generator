@@ -21,6 +21,16 @@ final class Association
     private $targetEntity;
 
     /**
+     * @var null|string
+     */
+    private $mappedBy;
+
+    /**
+     * @var null|string
+     */
+    private $inversedBy;
+
+    /**
      * @var null|JoinColumn
      */
     private $joinColumn;
@@ -60,6 +70,26 @@ final class Association
     public function setTargetEntity(string $targetEntity): void
     {
         $this->targetEntity = $targetEntity;
+    }
+
+    public function getMappedBy(): ?string
+    {
+        return $this->mappedBy;
+    }
+
+    public function setMappedBy(?string $mappedBy): void
+    {
+        $this->mappedBy = $mappedBy;
+    }
+
+    public function getInversedBy(): ?string
+    {
+        return $this->inversedBy;
+    }
+
+    public function setInversedBy(?string $inversedBy): void
+    {
+        $this->inversedBy = $inversedBy;
     }
 
     public function getJoinColumn(): ?JoinColumn

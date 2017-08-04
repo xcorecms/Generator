@@ -7,6 +7,25 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 class EntityClassGenerator extends EntityGenerator
 {
+    /**
+     * @var string
+     */
+    protected static $constructorMethodTemplate =
+        '
+<spaces>/**
+<spaces> * Constructor
+<spaces> */
+<spaces>public function __construct()
+<spaces>{
+<spaces><spaces>$this->generatedConstructor();
+<spaces>}
+';
+
+    /**
+     * @var bool
+     */
+    private $generateConstructor = false;
+
     protected function generateEntityBody(ClassMetadataInfo $metadata): string
     {
         $code = [];
@@ -14,5 +33,27 @@ class EntityClassGenerator extends EntityGenerator
         $code[] = parent::generateEntityBody($metadata);
 
         return implode("\n", $code);
+    }
+
+    public function generateConstructor(bool $generateConstructor)
+    {
+        $this->generateConstructor = $generateConstructor;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConstructor(): bool
+    {
+        return $this->generateConstructor;
+    }
+
+    protected function generateEntityConstructor(ClassMetadataInfo $metadata)
+    {
+        if ($this->generateConstructor) {
+            return static::$constructorMethodTemplate;
+        }
+
+        return '';
     }
 }

@@ -126,6 +126,16 @@ final class EntityFactory
                     $property,
                     AssociationType::get(AssociationType::ONE_TO_ONE)
                 );
+            } elseif (isset($property->oneToMany)) {
+                $properties[] = $this->createAssociation(
+                    $property,
+                    AssociationType::get(AssociationType::ONE_TO_MANY)
+                );
+            } elseif (isset($property->manyToMany)) {
+                $properties[] = $this->createAssociation(
+                    $property,
+                    AssociationType::get(AssociationType::MANY_TO_MANY)
+                );
             } else {
                 $properties[] = $this->createProperty($property, $entity);
             }
@@ -181,7 +191,16 @@ final class EntityFactory
 
     private function createAssociation(stdClass $data, AssociationType $type): Association
     {
-        $association = new Association($data->name, $type, $data->{lcfirst($type->getValue())}->targetEntity);
+        $annotationData = $data->{lcfirst($type->getValue())};
+        $association = new Association($data->name, $type, $annotationData->targetEntity);
+
+        if (isset($annotationData->mappedBy)) {
+            $association->setMappedBy($annotationData->mappedBy);
+        }
+
+        if (isset($annotationData->inversedBy)) {
+            $association->setInversedBy($annotationData->inversedBy);
+        }
 
         return $association;
     }

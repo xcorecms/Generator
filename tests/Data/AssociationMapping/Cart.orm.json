@@ -1,0 +1,12 @@
+{
+    "name": "Cart",
+    "properties": [
+        {
+            "name": "customer",
+            "oneToOne": {
+                "targetEntity": "Customer",
+                "inversedBy": "cart"
+            }
+        }
+    ]
+}

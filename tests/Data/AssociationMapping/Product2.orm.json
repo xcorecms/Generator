@@ -1,0 +1,12 @@
+{
+    "name": "Product2",
+    "properties": [
+        {
+            "name": "features",
+            "oneToMany": {
+                "targetEntity": "Feature",
+                "mappedBy": "product"
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Student",
+    "properties": [
+        {
+            "name": "mentor",
+            "oneToOne": {
+                "targetEntity": "Student"
+            }
+        }
+    ]
+}

@@ -65,6 +65,24 @@ public function <methodName>(<methodTypeHint> $<variableName><variableDefault>):
 }';
 
     /**
+     * @var string
+     */
+    protected static $constructorMethodTemplate =
+        '/**
+ * Generated Constructor
+ */
+public function generatedConstructor(): void
+{
+<spaces><collections>
+}
+';
+
+    /**
+     * @var bool
+     */
+    private $hasConstructor = false;
+
+    /**
      * {@inheritdoc}
      */
     protected function generateEntityAnnotation(ClassMetadataInfo $metadata): string
@@ -134,6 +152,25 @@ public function <methodName>(<methodTypeHint> $<variableName><variableDefault>):
         $code = str_replace(['@var boolean', '@var integer'], ['@var bool', '@var int'], $code);
 
         return $code;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function generateEntityConstructor(ClassMetadataInfo $metadata): string
+    {
+        $code = parent::generateEntityConstructor($metadata);
+
+        if ($code !== '') {
+            $this->hasConstructor = true;
+        }
+
+        return $code;
+    }
+
+    public function hasConstructor(): bool
+    {
+        return $this->hasConstructor;
     }
 
     /**

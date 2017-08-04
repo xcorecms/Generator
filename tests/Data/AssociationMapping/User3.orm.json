@@ -1,0 +1,11 @@
+{
+    "name": "User3",
+    "properties": [
+        {
+            "name": "groups",
+            "manyToMany": {
+                "targetEntity": "Group"
+            }
+        }
+    ]
+}
