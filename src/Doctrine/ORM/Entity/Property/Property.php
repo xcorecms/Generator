@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Xcore\Generator\Doctrine\ORM\Entity\Property;
 
+use Xcore\Generator\Doctrine\ORM\Entity\Assert\Assert;
+
 final class Property
 {
     use VisibilityTrait;
@@ -44,6 +46,11 @@ final class Property
      * @var null|SequenceGenerator
      */
     private $sequenceGenerator;
+
+    /**
+     * @var Assert[]
+     */
+    private $asserts = [];
 
     public function __construct(
         string $name,
@@ -139,6 +146,27 @@ final class Property
         $this->sequenceGenerator = $sequenceGenerator;
     }
 
+    /**
+     * @return Assert[]
+     */
+    public function getAsserts(): array
+    {
+        return $this->asserts;
+    }
+
+    /**
+     * @param Assert[] $asserts
+     */
+    public function setAsserts(array $asserts): void
+    {
+        $this->asserts = $asserts;
+    }
+
+    public function addAssert(Assert $assert): void
+    {
+        $this->asserts[] = $assert;
+    }
+
     public function getMetadataMapping(): array
     {
         $mapping = [
@@ -147,6 +175,7 @@ final class Property
             'getter' => $this->getter,
             'setter' => $this->setter,
             'id' => $this->id,
+            'asserts' => $this->asserts,
         ];
 
         if ($this->type !== null) {

@@ -1,0 +1,13 @@
+{
+    "name": "File",
+    "properties": [
+        {
+            "name": "identifier",
+            "asserts": [
+                {
+                    "assert": "Uuid"
+                }
+            ]
+        }
+    ]
+}

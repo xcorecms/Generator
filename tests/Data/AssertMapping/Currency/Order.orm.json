@@ -1,0 +1,13 @@
+{
+    "name": "Order",
+    "properties": [
+        {
+            "name": "currency",
+            "asserts": [
+                {
+                    "assert": "Currency"
+                }
+            ]
+        }
+    ]
+}

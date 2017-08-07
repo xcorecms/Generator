@@ -1,0 +1,15 @@
+{
+    "name": "Event",
+    "properties": [
+        {
+            "name": "startDate",
+            "asserts": [
+                {
+                    "assert": "Range",
+                    "min": "first day of January",
+                    "max": "first day of January next year"
+                }
+            ]
+        }
+    ]
+}

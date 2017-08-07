@@ -1,0 +1,23 @@
+{
+    "name": "Person",
+    "properties": [
+        {
+            "name": "age",
+            "asserts": [
+                {
+                    "assert": "GreaterThanOrEqual",
+                    "value": 18
+                }
+            ]
+        },
+        {
+            "name": "deliveryDate",
+            "asserts": [
+                {
+                    "assert": "GreaterThanOrEqual",
+                    "value": "today"
+                }
+            ]
+        }
+    ]
+}

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Xcore\Generator\Doctrine\ORM\Entity;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Xcore\Generator\Doctrine\ORM\Entity\Assert\Assert;
 use Xcore\Generator\Doctrine\ORM\Entity\Association\Association;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GetterType;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GetterTypeTrait;
@@ -58,9 +58,9 @@ final class Entity
     private $ids = [];
 
     /**
-     * @var null|ClassMetadata
+     * @var Assert[]
      */
-    private $validationMetadata;
+    private $asserts = [];
 
     public function __construct(string $className, bool $nullable, Visibility $visibility, ?GetterType $getter, bool $setter)
     {
@@ -181,12 +181,21 @@ final class Entity
         $this->outputDirectory = $outputDirectory;
     }
 
-    public function getValidationMetadata(): ClassMetadata
+    /**
+     * @return Assert[]
+     */
+    public function getAsserts(): array
     {
-        if ($this->validationMetadata === null) {
-            $this->validationMetadata = new ClassMetadata($this->getClassName());
-        }
+        return $this->asserts;
+    }
 
-        return $this->validationMetadata;
+    public function addAssert(Assert $assert): void
+    {
+        $this->asserts[] = $assert;
+    }
+
+    public function setAsserts(array $asserts): void
+    {
+        $this->asserts = $asserts;
     }
 }

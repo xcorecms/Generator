@@ -1,0 +1,14 @@
+{
+    "name": "Author",
+    "properties": [
+        {
+            "name": "createdAt",
+            "asserts": [
+                {
+                    "assert": "DateTime",
+                    "format": "Y-m-d H:i:s"
+                }
+            ]
+        }
+    ]
+}

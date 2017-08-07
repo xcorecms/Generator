@@ -1,0 +1,13 @@
+{
+    "name": "Transaction",
+    "properties": [
+        {
+            "name": "businessIdentifierCode",
+            "asserts": [
+                {
+                    "assert": "Bic"
+                }
+            ]
+        }
+    ]
+}

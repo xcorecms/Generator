@@ -22,6 +22,7 @@ final class MetadataTest extends TestCase
         $config = Setup::createAnnotationMetadataConfiguration($entityFiles, false, null, null, false);
         $entityManager = EntityManager::create($params, $config);
         $schemaValidator = new SchemaValidator($entityManager);
+
         $this->assertEmpty($schemaValidator->validateMapping());
     }
 }

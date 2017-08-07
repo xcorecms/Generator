@@ -1,0 +1,14 @@
+{
+    "name": "Content",
+    "properties": [
+        {
+            "name": "title",
+            "asserts": [
+                {
+                    "assert": "NotBlank",
+                    "message": "Winter is coming!"
+                }
+            ]
+        }
+    ]
+}

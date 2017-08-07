@@ -1,0 +1,23 @@
+{
+    "name": "Person",
+    "properties": [
+        {
+            "name": "firstName",
+            "asserts": [
+                {
+                    "assert": "NotEqualTo",
+                    "value": "Mary"
+                }
+            ]
+        },
+        {
+            "name": "age",
+            "asserts": [
+                {
+                    "assert": "NotEqualTo",
+                    "value": 15
+                }
+            ]
+        }
+    ]
+}

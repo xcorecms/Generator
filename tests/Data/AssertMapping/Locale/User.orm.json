@@ -1,0 +1,13 @@
+{
+    "name": "User",
+    "properties": [
+        {
+            "name": "locale",
+            "asserts": [
+                {
+                    "assert": "Locale"
+                }
+            ]
+        }
+    ]
+}

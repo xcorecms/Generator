@@ -1,0 +1,13 @@
+{
+    "name": "Transaction",
+    "properties": [
+        {
+            "name": "cardNumber",
+            "asserts": [
+                {
+                    "assert": "Luhn"
+                }
+            ]
+        }
+    ]
+}

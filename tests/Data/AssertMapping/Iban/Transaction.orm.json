@@ -1,0 +1,13 @@
+{
+    "name": "Transaction",
+    "properties": [
+        {
+            "name": "bankAccountNumber",
+            "asserts": [
+                {
+                    "assert": "Luhn"
+                }
+            ]
+        }
+    ]
+}

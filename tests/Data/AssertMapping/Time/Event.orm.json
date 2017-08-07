@@ -1,0 +1,13 @@
+{
+    "name": "Event",
+    "properties": [
+        {
+            "name": "startsAt",
+            "asserts": [
+                {
+                    "assert": "Time"
+                }
+            ]
+        }
+    ]
+}

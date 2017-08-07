@@ -140,6 +140,8 @@ class EntityGenerator
             }
         }
 
+        $entityTraitGenerator->setGenerateAsserts($entity->getAsserts() !== []);
+
         $entityTraitGenerator->writeEntityClass($entityTraitMetadataInfo, $entity->getOutputDirectory());
 
         $entityClassGenerator = new EntityClassGenerator();

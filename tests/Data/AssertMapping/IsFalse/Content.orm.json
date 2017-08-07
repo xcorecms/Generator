@@ -1,0 +1,13 @@
+{
+    "name": "Content",
+    "properties": [
+        {
+            "name": "falseProperty",
+            "asserts": [
+                {
+                    "assert": "IsFalse"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Person",
+    "properties": [
+        {
+            "name": "siblings",
+            "asserts": [
+                {
+                    "assert": "LessThanOrEqual",
+                    "value": 5
+                }
+            ]
+        },
+        {
+            "name": "age",
+            "asserts": [
+                {
+                    "assert": "LessThanOrEqual",
+                    "value": 80
+                }
+            ]
+        },
+        {
+            "name": "dateOfBirth",
+            "asserts": [
+                {
+                    "assert": "LessThanOrEqual",
+                    "value": "today"
+                }
+            ]
+        }
+    ]
+}

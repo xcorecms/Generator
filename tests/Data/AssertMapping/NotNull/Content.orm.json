@@ -1,0 +1,13 @@
+{
+    "name": "Content",
+    "properties": [
+        {
+            "name": "notNullProperty",
+            "asserts": [
+                {
+                    "assert": "NotNull"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Author",
+    "properties": [
+        {
+            "name": "birthday",
+            "asserts": [
+                {
+                    "assert": "Date"
+                }
+            ]
+        }
+    ]
+}

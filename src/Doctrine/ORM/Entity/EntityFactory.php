@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use League\JsonGuard\Validator;
 use League\JsonReference\Dereferencer;
 use stdClass;
+use Xcore\Generator\Doctrine\ORM\Entity\Assert\Assert;
 use Xcore\Generator\Doctrine\ORM\Entity\Association\Association;
 use Xcore\Generator\Doctrine\ORM\Entity\Association\AssociationType;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GeneratedValueType;
@@ -137,7 +138,101 @@ final class EntityFactory
                     AssociationType::get(AssociationType::MANY_TO_MANY)
                 );
             } else {
-                $properties[] = $this->createProperty($property, $entity);
+                $entityProperty = $this->createProperty($property, $entity);
+                $properties[] = $entityProperty;
+
+                if (isset($property->asserts)) {
+                    foreach ($property->asserts as $assertData) {
+                        $assert = new Assert($assertData->assert);
+
+                        if (isset($assertData->message)) {
+                            $assert->setMessage($assertData->message);
+                        }
+
+                        if (isset($assertData->type)) {
+                            $assert->setType($assertData->type);
+                        }
+
+                        if (isset($assertData->strict)) {
+                            $assert->setStrict($assertData->strict);
+                        }
+
+                        if (isset($assertData->checkHost)) {
+                            $assert->setCheckHost($assertData->checkHost);
+                        }
+
+                        if (isset($assertData->checkMX)) {
+                            $assert->setCheckMX($assertData->checkMX);
+                        }
+
+                        if (isset($assertData->min)) {
+                            $assert->setMin($assertData->min);
+                        }
+
+                        if (isset($assertData->max)) {
+                            $assert->setMax($assertData->max);
+                        }
+
+                        if (isset($assertData->charset)) {
+                            $assert->setMax($assertData->charset);
+                        }
+
+                        if (isset($assertData->minMessage)) {
+                            $assert->setMinMessage($assertData->minMessage);
+                        }
+
+                        if (isset($assertData->maxMessage)) {
+                            $assert->setMaxMessage($assertData->maxMessage);
+                        }
+
+                        if (isset($assertData->exactMessage)) {
+                            $assert->setExactMessage($assertData->exactMessage);
+                        }
+
+                        if (isset($assertData->protocols)) {
+                            $assert->setProtocols($assertData->protocols);
+                        }
+
+                        if (isset($assertData->checkDNS)) {
+                            $assert->setCheckDNS($assertData->checkDNS);
+                        }
+
+                        if (isset($assertData->dnsMessage)) {
+                            $assert->setDnsMessage($assertData->dnsMessage);
+                        }
+
+                        if (isset($assertData->pattern)) {
+                            $assert->setPattern($assertData->pattern);
+                        }
+
+                        if (isset($assertData->htmlPattern)) {
+                            $assert->setHtmlPattern($assertData->htmlPattern);
+                        }
+
+                        if (isset($assertData->match)) {
+                            $assert->setMatch($assertData->match);
+                        }
+
+                        if (isset($assertData->version)) {
+                            $assert->setVersion($assertData->version);
+                        }
+
+                        if (isset($assertData->invalidMessage)) {
+                            $assert->setInvalidMessage($assertData->invalidMessage);
+                        }
+
+                        if (isset($assertData->value)) {
+                            $assert->setValue($assertData->value);
+                        }
+
+                        if (isset($assertData->format)) {
+                            $assert->setFormat($assertData->format);
+                        }
+
+                        $entityProperty->addAssert($assert);
+                        $entity->addAssert($assert);
+                    }
+                }
             }
         }
 

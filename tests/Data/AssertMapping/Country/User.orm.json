@@ -1,0 +1,13 @@
+{
+    "name": "User",
+    "properties": [
+        {
+            "name": "country",
+            "asserts": [
+                {
+                    "assert": "Country"
+                }
+            ]
+        }
+    ]
+}

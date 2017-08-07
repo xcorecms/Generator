@@ -1,0 +1,17 @@
+{
+    "name": "Author",
+    "properties": [
+        {
+            "name": "bioUrl",
+            "asserts": [
+                {
+                    "assert": "Url",
+                    "protocols": ["http", "https", "ftp"],
+                    "message": "The url '{{ value }}' is not a valid url",
+                    "dnsMessage": "The host '{{ value }}' could not be resolved.",
+                    "checkDNS": true
+                }
+            ]
+        }
+    ]
+}

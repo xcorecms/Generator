@@ -6,6 +6,7 @@ namespace Xcore\Generator\Doctrine\ORM\Tools;
 use Doctrine\Common\Util\Inflector;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Xcore\Generator\Doctrine\ORM\Entity\Assert\Assert;
 use Xcore\Generator\Doctrine\ORM\Entity\Property\GetterType;
 
 class EntityTraitGenerator extends EntityGenerator
@@ -79,6 +80,21 @@ public function generatedConstructor(): void
     private $hasConstructor = false;
 
     /**
+     * @var bool
+     */
+    private $generateAsserts = false;
+
+    public function getGenerateAsserts(): bool
+    {
+        return $this->generateAsserts;
+    }
+
+    public function setGenerateAsserts(bool $generateAsserts): void
+    {
+        $this->generateAsserts = $generateAsserts;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function generateEntityAnnotation(ClassMetadataInfo $metadata): string
@@ -99,7 +115,7 @@ public function generatedConstructor(): void
      */
     protected function generateEntityClassName(ClassMetadataInfo $metadata): string
     {
-        return 'trait '.$this->getClassName($metadata);
+        return 'trait ' . $this->getClassName($metadata);
     }
 
     /**
@@ -141,13 +157,124 @@ public function generatedConstructor(): void
 
         // If type is nullable add |null prefix to variable type
         if ($fieldMapping['nullable'] === true) {
-            $variableType = '@var '.$this->getType($fieldMapping['type']);
-            $code = str_replace($variableType, $variableType.'|null', $code);
+            $variableType = '@var ' . $this->getType($fieldMapping['type']);
+            $code = str_replace($variableType, $variableType . '|null', $code);
         }
 
         $code = str_replace(['@var boolean', '@var integer'], ['@var bool', '@var int'], $code);
+        $lines = [];
 
-        return $code;
+        if (!empty($fieldMapping['asserts'])) {
+            /** @var Assert $assert */
+            foreach ($fieldMapping['asserts'] as $assert) {
+                $options = [];
+
+                if ($assert->getMessage() !== null) {
+                    $options[] = 'message="'.$assert->getMessage().'"';
+                }
+
+                if ($assert->getType() !== null) {
+                    $options[] = 'type="'.$assert->getType().'"';
+                }
+
+                if ($assert->getStrict() !== null) {
+                    $options[] = 'strict='.var_export($assert->getStrict(), true);
+                }
+
+                if ($assert->getCheckHost() !== null) {
+                    $options[] = 'checkHost='.var_export($assert->getCheckHost(), true);
+                }
+
+                if ($assert->getCheckMX() !== null) {
+                    $options[] = 'checkMX='.var_export($assert->getCheckMX(), true);
+                }
+
+                if ($assert->getMin() !== null) {
+                    $options[] = is_string($assert->getMin()) ?
+                        'min="'.$assert->getMin().'"' :
+                        'min='.$assert->getMin()
+                    ;
+                }
+
+                if ($assert->getMax() !== null) {
+                    $options[] = is_string($assert->getMax()) ?
+                        'max="'.$assert->getMax().'"' :
+                        'max='.$assert->getMax()
+                    ;
+                }
+
+                if ($assert->getMinMessage() !== null) {
+                    $options[] = 'minMessage="'.$assert->getMinMessage().'"';
+                }
+
+                if ($assert->getMaxMessage() !== null) {
+                    $options[] = 'maxMessage="'.$assert->getMaxMessage().'"';
+                }
+
+                if ($assert->getInvalidMessage() !== null) {
+                    $options[] = 'invalidMessage="'.$assert->getInvalidMessage().'"';
+                }
+
+                if ($assert->getValue() !== null) {
+                    if (is_string($assert->getValue())) {
+                        $options[] = 'value="'.$assert->getValue().'"';
+                    } elseif (is_bool($assert->getValue())) {
+                        $options[] = 'value='.var_export($assert->getValue(), true);
+                    } else {
+                        $options[] = 'value='.$assert->getValue();
+                    }
+                }
+
+                if ($assert->getCharset() !== null) {
+                    $options[] = 'charset="'.$assert->getCharset().'"';
+                }
+
+                if ($assert->getExactMessage() !== null) {
+                    $options[] = 'exactMessage="'.$assert->getExactMessage().'"';
+                }
+
+                if ($assert->getProtocols() !== []) {
+                    $options[] = 'protocols={"'.implode('", "', $assert->getProtocols()).'"}';
+                }
+
+                if ($assert->getCheckDNS() !== null) {
+                    $options[] = 'checkDNS='.var_export($assert->getCheckDNS(), true);
+                }
+
+                if ($assert->getDnsMessage() !== null) {
+                    $options[] = 'dnsMessage="'.$assert->getDnsMessage().'"';
+                }
+
+                if ($assert->getPattern() !== null) {
+                    $options[] = 'pattern="'.$assert->getPattern().'"';
+                }
+
+                if ($assert->getHtmlPattern() !== null) {
+                    $options[] = is_string($assert->getHtmlPattern()) ?
+                        'htmlPattern="'.$assert->getHtmlPattern().'"' :
+                        'htmlPattern='.var_export($assert->getHtmlPattern(), true)
+                    ;
+                }
+
+                if ($assert->getMatch() !== null) {
+                    $options[] = 'match='.var_export($assert->getMatch(), true);
+                }
+
+                if ($assert->getVersion() !== null) {
+                    $options[] = 'version="'.$assert->getVersion().'"';
+                }
+
+                if ($assert->getFormat() !== null) {
+                    $options[] = 'format="'.$assert->getFormat().'"';
+                }
+
+                $lines[] = $this->spaces.' * @Assert\\'.$assert->getName().'('.implode(', ', $options).')';
+            }
+        }
+
+        $lines[] = $lastLine = $this->spaces . ' */';
+
+        return str_replace($lastLine, implode("\n", $lines), $code);
     }
 
     /**
@@ -167,6 +294,17 @@ public function generatedConstructor(): void
     public function hasConstructor(): bool
     {
         return $this->hasConstructor;
+    }
+
+    protected function generateEntityUse(): string
+    {
+        $code = parent::generateEntityUse();
+
+        if ($this->generateAsserts) {
+            $code .= 'use Symfony\Component\Validator\Constraints as Assert;'."\n";
+        }
+
+        return $code;
     }
 
     /**
