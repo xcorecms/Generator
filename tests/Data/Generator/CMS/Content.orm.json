@@ -1,0 +1,15 @@
+{
+    "name": "Content",
+    "properties": [
+        {
+            "name": "contentType"
+        },
+        {
+            "name": "data",
+            "type": "json_array"
+        },
+        {
+            "name": "url"
+        }
+    ]
+}

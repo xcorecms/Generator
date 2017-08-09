@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Doctrine ORM Entity JSON schema",
+    "title": "Doctrine ORM Entity JSON schema for Xcore Generator",
     "type": "object",
     "definitions": {
         "entity-name": {
