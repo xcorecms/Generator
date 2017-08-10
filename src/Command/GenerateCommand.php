@@ -40,7 +40,7 @@ class GenerateCommand extends Command
     {
         $dereference = Dereferencer::draft4();
         $schema = $dereference->dereference('file://'.__DIR__. '/../Resources/schema/generator.json');
-        $generatorSetup = __DIR__.'/generator.json';
+        $generatorSetup = getcwd().'/generator.json';
 
         if (null !== $input->getOption(self::CONFIG)) {
             $generatorSetup = $input->getOption(self::CONFIG);
@@ -71,8 +71,6 @@ class GenerateCommand extends Command
             if (is_dir($directory)) {
                 /** @var SplFileInfo $file */
                 foreach ($finder as $file) {
-                    var_dump($file->getFilename());
-
                     $namespace .= str_replace([$directory, '/'], ['', '\\'], $file->getPath());
                     $content = $file->getContents();
 

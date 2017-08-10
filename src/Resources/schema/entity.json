@@ -16,6 +16,12 @@
     },
     "properties": {
         "name": { "$ref": "#/definitions/entity-name" },
+        "get": {
+            "type": "boolean"
+        },
+        "set": {
+            "type": "boolean"
+        },
         "namespace": {
             "type": "string"
         },
@@ -56,6 +62,18 @@
                     "name": { "$ref": "#/definitions/property-name" },
                     "columnName": {
                         "type": "string"
+                    },
+                    "get": {
+                        "enum": [
+                            true,
+                            false,
+                            "has",
+                            "is"
+                        ],
+                        "description": "Whether is getter enabled/getter type"
+                    },
+                    "set": {
+                        "type": "boolean"
                     },
                     "length": {
                         "type": "integer",
