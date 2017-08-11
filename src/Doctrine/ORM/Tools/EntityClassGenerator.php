@@ -26,6 +26,13 @@ class EntityClassGenerator extends EntityGenerator
      */
     private $generateConstructor = false;
 
+    protected function generateEntityDocBlock(ClassMetadataInfo $metadata): string
+    {
+        $code = parent::generateEntityDocBlock($metadata);
+
+        return str_replace([' * '.$this->getClassName($metadata)."\n", " *\n"], '', $code);
+    }
+
     protected function generateEntityBody(ClassMetadataInfo $metadata): string
     {
         $code = [];
