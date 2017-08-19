@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Doctrine 2 ORM Column",
+    "type": "object",
+    "$ref": "property.json#/",
+    "properties": {
+        "type": {
+            "type": "boolean"
+        }
+    }
+}
